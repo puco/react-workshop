@@ -22,7 +22,7 @@ var DATA = {
 };
 
 var Menu = React.createClass({
-  render () {
+  render: function () {
     return null;
   }
 });

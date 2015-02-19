@@ -13,8 +13,8 @@ var DATA = [
 
 var App = React.createClass({
 
-  renderTabs () {
-    return this.props.countries.map((country, index) => {
+  renderTabs: function () {
+    return this.props.countries.map(function (country, index) {
       return (
         <div style={index === 0 ? styles.activeTab : styles.tab}>
           {country.name}
@@ -23,7 +23,7 @@ var App = React.createClass({
     });
   },
 
-  renderPanel () {
+  renderPanel: function () {
     var country = this.props.countries[0];
     return (
       <div>
@@ -32,7 +32,7 @@ var App = React.createClass({
     );
   },
 
-  render () {
+  render: function () {
     return (
       <div style={styles.app}>
         <div style={styles.tabs}>

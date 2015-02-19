@@ -20,17 +20,17 @@ var Tabs = React.createClass({
     data: React.PropTypes.array.isRequired
   },
 
-  getInitialState () {
+  getInitialState: function () {
     return {
       activeTabIndex: 0
     };
   },
 
-  handleTabClick (activeTabIndex) {
+  handleTabClick: function (activeTabIndex) {
     this.setState({ activeTabIndex });
   },
 
-  renderTabs () {
+  renderTabs: function () {
     return this.props.data.map((tab, index) => {
       var style = this.state.activeTabIndex === index ?
         styles.activeTab : styles.tab;
@@ -43,7 +43,7 @@ var Tabs = React.createClass({
     });
   },
 
-  renderPanel () {
+  renderPanel: function () {
     var tab = this.props.data[this.state.activeTabIndex];
     return (
       <div>
@@ -52,7 +52,7 @@ var Tabs = React.createClass({
     );
   },
 
-  render () {
+  render: function () {
     return (
       <div style={styles.app}>
         <div style={styles.tabs}>
@@ -67,7 +67,7 @@ var Tabs = React.createClass({
 });
 
 var App = React.createClass({
-  render () {
+  render: function () {
     return (
       <div>
         <h1>Props v. State</h1>

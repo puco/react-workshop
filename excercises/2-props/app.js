@@ -28,7 +28,7 @@ var USERS = [
   { id: 2, name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
 ];
 
-var emailType = (props, propName, componentName) => {
+var emailType = function (props, propName, componentName) {
   warning(
     validateEmail(props.email),
     `Invalid email '${props.email}' sent to 'Gravatar'. Check the render method of '${componentName}'.`
@@ -36,11 +36,11 @@ var emailType = (props, propName, componentName) => {
 };
 
 var Gravatar = React.createClass({
-  propTypes: {
+  propTypes: function () {
     email: emailType
   },
 
-  getDefaultProps () {
+  getDefaultProps: function () {
     return {
       size: 16
     };
@@ -55,8 +55,8 @@ var Gravatar = React.createClass({
 });
 
 var App = React.createClass({
-  render () {
-    var users = USERS.map((user) => {
+  render: function () {
+    var users = USERS.map(function (user) {
       return (
         <li key={user.id}>
           <Gravatar email={user.email} size={36} /> {user.name}
