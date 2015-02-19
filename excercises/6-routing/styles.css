@@ -4,6 +4,7 @@ body {
 }
 
 a {
+  display: block;
   color: hsl(200, 50%, 50%);
 }
 

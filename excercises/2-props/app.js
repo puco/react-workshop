@@ -31,7 +31,7 @@ var USERS = [
 var emailType = function (props, propName, componentName) {
   warning(
     validateEmail(props.email),
-    `Invalid email '${props.email}' sent to 'Gravatar'. Check the render method of '${componentName}'.`
+    "Invalid email '" + props.email + "' sent to 'Gravatar'. Check the render method of '" + componentName + "'."
   );
 };
 
@@ -46,10 +46,11 @@ var Gravatar = React.createClass({
     };
   },
 
-  render () {
-    var { email, size } = this.props;
+  render: function () {
+    var email = this.props.email;
+    var size = this.props.size;
     var hash = md5(email);
-    var url = `${GRAVATAR_URL}/${hash}?s=${size*2}`;
+    var url = "" + GRAVATAR_URL + "/" + hash + "?s=" + size * 2;
     return <img src={url} width={size} />;
   }
 });

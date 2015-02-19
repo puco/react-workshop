@@ -19,7 +19,7 @@ var DATA = {
 };
 
 var Menu = React.createClass({
-  render () {
+  render: function () {
     var items = DATA.items.filter((item) => {
       return item.type === 'mexican';
     })

@@ -10,17 +10,17 @@ var USERS = [
   { id: 2, name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
 ];
 
-var emailType = (props, propName, componentName) => {
+var emailType = function (props, propName, componentName) {
   warning(
     validateEmail(props.email),
-    `Invalid email '${props[propName]}' sent to 'Gravatar'. Check the render method of '${componentName}'.`
+    "Invalid prop \"" + propName + "\", can't convert \"" + props[propName] + "\" to number. Check the render method of \"" + componentName + "\"."
   );
 };
 
-var sizeType = (props, propName, componentName) => {
+var sizeType = function (props, propName, componentName) {
   warning(
     !isNaN(parseInt(props[propName])),
-    `Invalid prop "${propName}", can't convert "${props[propName]}" to number. Check the render method of "${componentName}".`
+    "Invalid prop \"" + propName + "\", can't convert \"" + props[propName] + "\" to number. Check the render method of \"" + componentName + "\"."
   );
 };
 
@@ -34,23 +34,24 @@ var Gravatar = React.createClass({
     size: sizeType
   },
 
-  getDefaultProps () {
+  getDefaultProps: function () {
     return {
       size: 16
     };
   },
 
-  render () {
-    var { user, size } = this.props;
+  render: function () {
+    var user = this.props.user;
+    var size = this.props.size;
     var hash = md5(user.email);
-    var url = `${GRAVATAR_URL}/${hash}?s=${size*2}`;
+    var url = "" + GRAVATAR_URL + "/" + hash + "?s=" + size * 2;
     return <img src={url} width={size} />;
   }
 });
 
 var App = React.createClass({
-  render () {
-    var users = this.props.users.map((user) => {
+  render: function () {
+    var users = this.props.users.map(function (user) {
       return <li key={user.id}><Gravatar user={user} size={36} /> {user.name}</li>;
     });
     return (
@@ -63,4 +64,3 @@ var App = React.createClass({
 });
 
 React.render(<App users={USERS}/>, document.body);
-

@@ -27,14 +27,15 @@ var Tabs = React.createClass({
   },
 
   handleTabClick: function (activeTabIndex) {
-    this.setState({ activeTabIndex });
+    this.setState({ activeTabIndex: activeTabIndex });
   },
 
   renderTabs: function () {
-    return this.props.data.map((tab, index) => {
-      var style = this.state.activeTabIndex === index ?
+    var that = this;
+    return this.props.data.map(function (tab, index) {
+      var style = that.state.activeTabIndex === index ?
         styles.activeTab : styles.tab;
-      var clickHandler = this.handleTabClick.bind(this, index);
+      var clickHandler = that.handleTabClick.bind(that, index);
       return (
         <div key={tab.name} style={style} onClick={clickHandler}>
           {tab.name}

@@ -17,15 +17,16 @@ var Tabs = React.createClass({
     onActivateTab: React.PropTypes.func.isRequired,
   },
 
-  handleTabClick (activeTabIndex) {
+  handleTabClick: function (activeTabIndex) {
     this.props.onActivateTab(activeTabIndex);
   },
 
-  renderTabs () {
-    return this.props.data.map((tab, index) => {
-      var style = this.props.activeTabIndex === index ?
+  renderTabs: function () {
+    var that = this;
+    return this.props.data.map(function (tab, index) {
+      var style = that.props.activeTabIndex === index ?
         styles.activeTab : styles.tab;
-      var clickHandler = this.handleTabClick.bind(this, index);
+      var clickHandler = that.handleTabClick.bind(that, index);
       return (
         <div key={tab.name} style={style} onClick={clickHandler}>
           {tab.name}
@@ -34,7 +35,7 @@ var Tabs = React.createClass({
     });
   },
 
-  renderPanel () {
+  renderPanel: function () {
     var tab = this.props.data[this.props.activeTabIndex];
     return (
       <div>
@@ -43,7 +44,7 @@ var Tabs = React.createClass({
     );
   },
 
-  render () {
+  render: function () {
     return (
       <div style={styles.app}>
         <div style={styles.tabs}>
@@ -58,17 +59,17 @@ var Tabs = React.createClass({
 });
 
 var App = React.createClass({
-  getInitialState () {
+  getInitialState: function () {
     return {
       activeTabIndex: 0
     };
   },
 
-  handleActivateTab (activeTabIndex) {
+  handleActivateTab: function (activeTabIndex) {
     this.setState({ activeTabIndex });
   },
 
-  render () {
+  render: function () {
     return (
       <div>
         <h1>Props v. State</h1>
