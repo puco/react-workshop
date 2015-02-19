@@ -4,8 +4,8 @@ React.js Workshop
 You will need
 
 ```
-git clone https://github.com/sejoker/2015-02-13-React.git
-cd 2015-02-13-React
+git clone https://github.com/sejoker/react-workshop.git
+cd react-workshop
 npm install
 npm start
 ```
