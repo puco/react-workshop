@@ -31,9 +31,10 @@ var MenuItem = React.createClass({
 
 var Menu = React.createClass({
   render: function () {
-    DATA.items.sort(sortBy('name'));
+    this.props.data.items.sort(sortBy('name'));
     var rows = [];
-    DATA.items
+
+    this.props.data.items
       .filter(function(i) {
         return i.type === 'mexican';
       })
@@ -43,7 +44,7 @@ var Menu = React.createClass({
 
     return (
       <div class="menu">
-        <h1>{this.props.title}</h1>
+        <h1>{this.props.data.title}</h1>
         <ul>
           {rows}
         </ul>
@@ -52,7 +53,7 @@ var Menu = React.createClass({
   }
 });
 
-React.render(<Menu/>, document.body, () => {
+React.render(<Menu data={DATA} />, document.body, () => {
   require('./tests').run();
 });
 

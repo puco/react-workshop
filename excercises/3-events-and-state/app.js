@@ -6,17 +6,31 @@ var React = require('react');
 var assign = require('react/lib/Object.assign');
 
 var DATA = [
-  { name: 'USA', description: 'Land of the Free, Home of the brave' },
-  { name: 'China', description: 'Lots of concrete' },
-  { name: 'Russia', description: 'World Cup 2018!' },
+  { name: 'USA', description: 'Land of the Free, Home of the brave', key: 'us' },
+  { name: 'China', description: 'Lots of concrete', key: 'cn' },
+  { name: 'Russia', description: 'World Cup 2018!', key: 'ru' }
 ];
 
 var App = React.createClass({
 
+  getInitialState: function () {
+    return {
+      activeTab: 1
+    };
+  },
+
+  onTabClick: function (index) {
+    console.log(this);
+    this.setState({
+      activeTab: index
+    });
+  },
+
   renderTabs: function () {
+    var that = this;
     return this.props.countries.map(function (country, index) {
       return (
-        <div style={index === 0 ? styles.activeTab : styles.tab}>
+        <div style={index === that.state.activeTab ? styles.activeTab : styles.tab} onClick={that.onTabClick.bind(that, index)}>
           {country.name}
         </div>
       );
@@ -24,7 +38,7 @@ var App = React.createClass({
   },
 
   renderPanel: function () {
-    var country = this.props.countries[0];
+    var country = this.props.countries[this.state.activeTab];
     return (
       <div>
         <p>{country.description}</p>

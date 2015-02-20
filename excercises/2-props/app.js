@@ -24,7 +24,7 @@ var warning = require('react/lib/warning');
 var GRAVATAR_URL = "http://gravatar.com/avatar";
 
 var USERS = [
-  { id: 1, name: 'Ryan Florence', email: 'rpflorencegmail.com' },
+  { id: 1, name: 'Ryan Florence', email: 'rpflorence@gmail.com' },
   { id: 2, name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
 ];
 
@@ -57,7 +57,7 @@ var Gravatar = React.createClass({
 
 var App = React.createClass({
   render: function () {
-    var users = USERS.map(function (user) {
+    var users = this.prop.users.map(function (user) {
       return (
         <li key={user.id}>
           <Gravatar email={user.email} size={36} /> {user.name}
@@ -73,7 +73,7 @@ var App = React.createClass({
   }
 });
 
-React.render(<App />, document.body);
+React.render(<App users={USERS} />, document.body);
 
 //require('./tests').run(Gravatar, emailType);
 
